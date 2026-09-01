@@ -102,6 +102,8 @@ GameObject:
   - component: {fileID: 5674075490412887078}
   - component: {fileID: 5445781914618085469}
   - component: {fileID: 6764410459411413679}
+  - component: {fileID: 7932130788497416503}
+  - component: {fileID: 4077283237314444273}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -207,3 +209,32 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7932130788497416503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7429203195290904044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04e078bbea542041b1731af43cb1fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.GamePlay.PawnMotor
+  _walkSpeed: 3
+  _sprintSpeed: 5.5
+  _acceleration: 25
+  _turnSpeed: 720
+  _gravity: -20
+--- !u!114 &4077283237314444273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7429203195290904044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a23232b495972d499998908edcc7236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.GamePlay.Pawn
