@@ -22,12 +22,17 @@ namespace Project.GamePlay
         private int _index;
         private float _waitTimer;
 
-        private void Awake()
+        /// <summary>
+        /// 런타임에 순찰 경로를 주입한다.
+        ///
+        /// NPC는 스폰될 때 만들어지므로 프리팹에 씬의 웨이포인트를 미리 넣어둘 수 없다.
+        /// GameDirector가 스폰하면서 LevelSpawnData에서 뽑은 경로를 여기로 넘긴다.
+        /// </summary>
+        public void SetRoute(Transform[] waypoints)
         {
-            if (_waypoints == null || _waypoints.Length == 0)
-            {
-                Debug.LogWarning($"[DummyAiBrain] {name}: 웨이포인트가 비어 있다. 제자리에 서 있게 된다.", this);
-            }
+            _waypoints = waypoints;
+            _index = 0;
+            _waitTimer = 0f;
         }
 
         public PawnIntent Think(float deltaTime)
