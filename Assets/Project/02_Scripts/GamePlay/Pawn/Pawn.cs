@@ -30,25 +30,24 @@ namespace Project.GamePlay
 
         private PawnMotor _motor;
         private PawnInteractor _interactor;
-        private CharacterController _controller;
         private IPawnBrain _brain;
 
         private void Awake()
         {
             _motor = GetComponent<PawnMotor>();
             _interactor = GetComponent<PawnInteractor>();
-            _controller = GetComponent<CharacterController>();
             _brain = GetComponent<IPawnBrain>();
         }
 
         public override void Spawned()
         {
-            // 남의 Pawn은 NetworkTransform이 위치를 직접 써넣는다.
-            // CharacterController가 켜져 있으면 서로 밀어내며 떨린다.
-            if (!HasStateAuthority && _controller != null)
-            {
-                _controller.enabled = false;
-            }
+            // 프록시라고 CharacterController를 끄면 안 된다.
+            // 프리팹에 다른 콜라이더가 없어서, 끄는 순간 물리 씬에서 사라지고
+            // 사장의 PawnInteractor가 아무도 찾지 못하게 된다.
+            //
+            // 켜둬도 안전하다. CharacterController는 Move()를 부를 때만 밀어내는데
+            // 프록시는 Move()를 부르지 않으므로 그냥 콜라이더로만 남는다.
+            // 덤으로 다른 플레이어를 뚫고 지나가지 못하게 된다.
 
             gameObject.name = HasStateAuthority ? $"Pawn_Mine_{Object.Id}" : $"Pawn_{Object.Id}";
 
